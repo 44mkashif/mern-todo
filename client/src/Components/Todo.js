@@ -9,11 +9,14 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import Alert from '@material-ui/lab/Alert';
 
 class Todo extends Component {
 
     state = {
         todos: [],
+        error: false,
+        errorMessage: ''
     }
 
     componentDidMount() {
@@ -41,10 +44,17 @@ class Todo extends Component {
             .catch(err => console.log(err));
     }
 
+    setErrorMessage = (status, msg) => {
+        this.setState({
+            error: status,
+            errorMessage: msg
+        })
+    }
+
     render() {
 
         const { todos } = this.state;
-        console.log('Todos: ', todos);
+
         return (
             <Box margin="50px">
                 <Grid container component="main" justify="center">
@@ -57,15 +67,26 @@ class Todo extends Component {
 
                         <Box margin="30px">
                             <Grid container justify="space-evenly" alignItems="center">
-                                <Input getTodos={this.getTodos} />
+                                <Input getTodos={this.getTodos} setErrorMessage={this.setErrorMessage} />
                             </Grid>
+
+                            {this.state.error ?
+                                <Box margin="20px">
+                                    <Grid container justify="space-evenly" alignItems="center">
+                                        <Alert severity="error">{this.state.errorMessage}</Alert>
+                                    </Grid>
+                                </Box>
+                                :
+                                <div></div>
+                            }
+
                             <Grid container justify="center">
                                 <TodoList todos={todos} deleteTodo={this.deleteTodo}></TodoList>
                             </Grid>
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box >
         )
     }
 }

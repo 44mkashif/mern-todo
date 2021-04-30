@@ -28,8 +28,10 @@ class Input extends Component {
                     }
                 })
                 .catch(err => console.log(err));
+            this.props.setErrorMessage(false, '');
+
         } else {
-            console.log('Input is not valid');
+            this.props.setErrorMessage(true, 'Please enter a valid action!');
         }
 
     }
@@ -60,6 +62,7 @@ class Input extends Component {
                     onClick={() => this.addTodo()}>
                     Add Todo
                 </Button>
+
             </React.Fragment>
         )
 
