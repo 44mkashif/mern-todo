@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A simple TODO List Application ",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd ../client && npm install",
+    "start": "node bin/www.js",
+    "server": "nodemon bin/www.js",
+    "client": "cd ../client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/44mkashif/mern-todo.git"
+  },
+  "author": "Muhammad Kashif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/44mkashif/mern-todo/issues"
+  },
+  "homepage": "https://github.com/44mkashif/mern-todo#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
